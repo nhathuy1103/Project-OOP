@@ -1,7 +1,7 @@
 from flask import Flask
 from config import Config
 from models import db
-from routes import api  # Đảm bảo bạn đã import routes
+from routes import api  # Đảm bảo đã import routes
 
 app = Flask(__name__)
 app.config.from_object(Config)

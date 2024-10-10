@@ -7,7 +7,7 @@ class Config:
 
 
 
-# Kiểm tra kết nối
+# Kiểm tra kết nối (thay đổi các tham số để test trên máy mình nhé)
 '''
 import pymysql  # Thêm dòng này để import pymysql
 
