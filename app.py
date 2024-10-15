@@ -1,11 +1,11 @@
 from flask import Flask
-from extensions import db  # Import db từ extensions.py
+from extensions import db  # Import db từ extensions.py, không import routes ở đây
 
 def create_app():
     app = Flask(__name__)
 
     # Cấu hình kết nối đến cơ sở dữ liệu MySQL
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:110303@localhost/sale'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql12736967:4LIpGVNBym@sql12.freemysqlhosting.net/sql12736967'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Khởi tạo db với app

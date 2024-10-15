@@ -1,11 +1,11 @@
 # routes_employee.py
 from flask import Blueprint, jsonify, request
 from models import Employee
-from extensions import db  # Import db từ extensions.py
+from app import db
 
 employee_bp = Blueprint('employee_bp', __name__)
 
-# API thêm nhân viên
+# Thêm nhân viên mới
 @employee_bp.route('/', methods=['POST'])
 def create_employee():
     data = request.json
@@ -18,15 +18,26 @@ def create_employee():
     )
     db.session.add(new_employee)
     db.session.commit()
-    return jsonify(new_employee.display_info()), 201
+    return jsonify({"message": "Employee created successfully"}), 201
 
-# API lấy danh sách nhân viên
+# Lấy danh sách nhân viên
 @employee_bp.route('/', methods=['GET'])
 def get_employees():
     employees = Employee.query.all()
-    return jsonify([employee.display_info() for employee in employees])
+    result = []
+    for employee in employees:
+        emp_data = {
+            'employee_id': employee.employee_id,
+            'name': employee.name,
+            'email': employee.email,
+            'phone': employee.phone,
+            'role': employee.role,
+            'hire_date': employee.hire_date.strftime('%Y-%m-%d')
+        }
+        result.append(emp_data)
+    return jsonify(result)
 
-# API cập nhật thông tin nhân viên
+# Cập nhật thông tin nhân viên
 @employee_bp.route('/<int:employee_id>', methods=['PUT'])
 def update_employee(employee_id):
     data = request.json
@@ -41,7 +52,7 @@ def update_employee(employee_id):
     db.session.commit()
     return jsonify({"message": "Employee updated successfully"}), 200
 
-# API xóa nhân viên
+# Xóa nhân viên
 @employee_bp.route('/<int:employee_id>', methods=['DELETE'])
 def delete_employee(employee_id):
     employee = Employee.query.get(employee_id)

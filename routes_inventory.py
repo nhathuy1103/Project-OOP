@@ -10,9 +10,6 @@ inventory_bp = Blueprint('inventory_bp', __name__)
 @inventory_bp.route('/', methods=['POST'])
 def create_inventory():
     data = request.json
-    if not data or not all(key in data for key in ('product_id', 'quantity_in_stock', 'reorder_level')):
-        return jsonify({"message": "Invalid data provided"}), 400
-
     new_inventory = Inventory(
         product_id=data['product_id'],
         quantity_in_stock=data['quantity_in_stock'],
@@ -27,35 +24,29 @@ def create_inventory():
 @inventory_bp.route('/', methods=['GET'])
 def get_inventories():
     inventories = Inventory.query.all()
-    result = [
-        {
+    result = []
+    for inventory in inventories:
+        inv_data = {
             'inventory_id': inventory.inventory_id,
             'product_id': inventory.product_id,
             'quantity_in_stock': inventory.quantity_in_stock,
             'reorder_level': inventory.reorder_level,
             'last_updated': inventory.last_updated.strftime('%Y-%m-%d %H:%M:%S')
         }
-        for inventory in inventories
-    ]
+        result.append(inv_data)
     return jsonify(result)
 
 # Cập nhật tồn kho
 @inventory_bp.route('/<int:inventory_id>', methods=['PUT'])
 def update_inventory(inventory_id):
     data = request.json
-    if not data:
-        return jsonify({"message": "No data provided"}), 400
-
     inventory = Inventory.query.get(inventory_id)
     if not inventory:
         return jsonify({"message": "Inventory not found"}), 404
 
-    if 'quantity_in_stock' in data:
-        inventory.quantity_in_stock = data['quantity_in_stock']
-    if 'reorder_level' in data:
-        inventory.reorder_level = data['reorder_level']
+    inventory.quantity_in_stock = data.get('quantity_in_stock', inventory.quantity_in_stock)
+    inventory.reorder_level = data.get('reorder_level', inventory.reorder_level)
     inventory.last_updated = datetime.utcnow()
-
     db.session.commit()
     return jsonify({"message": "Inventory updated successfully"}), 200
 
