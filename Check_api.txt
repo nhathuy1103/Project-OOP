@@ -98,5 +98,5 @@ chọn phương thức delete và gán lên "/api/delete_product/<product_id>"
 
  <Rule '/api/update_employee_role/<employee_id>' (PATCH, OPTIONS) -> api.update_employee_role>]) (Checked)
 {
-    "role": "Nhân viên bán hàng"
+    "role": ""
 }
