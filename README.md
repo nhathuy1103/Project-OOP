@@ -1,6 +1,6 @@
 # Giải thích ý nghĩa từng file
      
-- app.py         #Chứa mã nguồn chính của ứng dụng, nơi khởi động Flask server và định nghĩa các route (đường dẫn) của API.
+- app.py         #Nơi khởi động Flask server và định nghĩa các route (đường dẫn) của API.
      
 - models.py      #Chứa định nghĩa các mô hình (models) tương ứng với các bảng trong cơ sở dữ liệu MySQL. Các models này được định nghĩa theo cú pháp của SQLAlchemy.
     
