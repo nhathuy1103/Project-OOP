@@ -3,6 +3,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://sql12736967:4LIpGVNBym@sql12.freemysqlhosting.net/sql12736967'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+'''
 # Kiểm tra kết nối
 import pymysql  # Thêm dòng này để import pymysql
 
@@ -25,3 +26,4 @@ except Exception as e:
 finally:
     if 'connection' in locals() and connection:  # Kiểm tra xem connection đã được định nghĩa
         connection.close()
+'''
