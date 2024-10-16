@@ -15,4 +15,6 @@
 - ER_Diagram.png  #Sơ đồ ER của database
     
 - Check_api.txt  #Địa chỉ và cú pháp check api (sử dụng postman giao thức http)
+
+- _pycache_ #thư mục chứa file bytecode của Python để giúp chương trình chạy nhanh hơn.khi chạy app.py sẽ tự động đẻ ra file này (không ảnh hưởng gì tới các chức năng của chương trình)
     
