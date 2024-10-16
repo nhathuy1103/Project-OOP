@@ -1,0 +1,102 @@
+1. ProductManager (Quản lý sản phẩm):
+Tạo sản phẩm mới (create_product)
+Xóa sản phẩm (delete_product)
+Xem danh sách tất cả sản phẩm (get_all_products)
+Tìm kiếm sản phẩm (search_products)
+
+2. CustomerManager (Quản lý khách hàng):
+Tạo khách hàng mới (create_customer)
+Xóa khách hàng (delete_customer)
+Xem danh sách khách hàng (get_all_customers)
+Theo dõi lịch sử đơn hàng của khách hàng (get_order_history)
+
+3. OrderManager (Quản lý đơn hàng):
+Tạo đơn hàng mới (create_order)
+Xem danh sách tất cả đơn hàng (get_all_orders)
+Cập nhật trạng thái đơn hàng (update_order_status)
+Xóa đơn hàng (delete_order)
+
+4. EmployeeManager (Quản lý nhân viên):
+Tạo nhân viên mới (create_employee)
+Xóa nhân viên (delete_employee)
+Xem danh sách nhân viên (get_all_employees)
+Cập nhật vai trò của nhân viên (update_employee_role)
+
+Tổng số chức năng:
+Products: 4
+Customers: 4
+Orders: 4
+Employees: 4
+Tổng cộng: 20 chức năng.
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<Rule '/api/create_product' (OPTIONS, POST) -> api.create_product>, (checked)
+{
+    "product_name": "",
+    "price": ,
+    "quantity": ,
+    "description": ""
+}
+
+
+ <Rule '/api/delete_product/<product_id>' (OPTIONS, DELETE) -> api.delete_product>, (checked)
+chọn phương thức delete và gán lên "/api/delete_product/<product_id>"
+
+
+ <Rule '/api/products' (GET, HEAD, OPTIONS) -> api.get_products>, (checked)
+
+
+ <Rule '/api/search_products/<keyword>' (GET, HEAD, OPTIONS) -> api.search_products>, (checked)
+
+
+ <Rule '/api/create_customer' (POST, OPTIONS) -> api.create_customer>,(checked)
+{
+    "name": "",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "date_of_birth": "1990-01-01"
+}
+
+ <Rule '/api/delete_customer/<customer_id>' (DELETE, OPTIONS) -> api.delete_customer>, <Rule '/api/customers' (GET, HEAD, OPTIONS) -> api.get_customers>,(checked)
+
+
+ <Rule '/api/customer_order_history/<customer_id>' (GET, HEAD, OPTIONS) -> api.customer_order_history>,(checked)
+
+
+ <Rule '/api/create_order' (POST, OPTIONS) -> api.create_order>,(checked)
+
+
+ <Rule '/api/orders' (GET, HEAD, OPTIONS) -> api.get_orders>, (checked)
+
+
+ <Rule '/api/update_order_status/<order_id>' (PATCH, OPTIONS) -> api.update_order_status>,(checked)
+{
+    "status": "Shipped"
+}
+
+
+ <Rule '/api/delete_order/<order_id>' (DELETE, OPTIONS) -> api.delete_order>,(checked)
+
+
+ <Rule '/api/create_employee' (POST, OPTIONS) -> api.create_employee>,
+{
+    "name": "",
+    "email": "",
+    "phone": "",
+    "role": "",
+    "hire_date": "2024-10-16"
+}
+
+
+ <Rule '/api/delete_employee/<employee_id>' (DELETE, OPTIONS) -> api.delete_employee>, <Rule '/api/employees' (GET, HEAD, OPTIONS) -> api.get_employees>, (checked)
+
+
+ <Rule '/api/update_employee_role/<employee_id>' (PATCH, OPTIONS) -> api.update_employee_role>]) (Checked)
+{
+    "role": "Nhân viên bán hàng"
+}
